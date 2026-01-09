@@ -1,0 +1,70 @@
+# ==================== MAIN PROGRAM ====================
+def main():
+    manager = MahasiswaManager()
+    view = ViewMahasiswa()
+    validator = Validator()
+    
+    view.tampilkan_header()
+    
+    while True:
+        view.tampilkan_menu()
+        
+        try:
+            pilihan = input("Pilih menu (1-4): ").strip()
+            
+            if pilihan == "1":
+                # Input data mahasiswa
+                print("\n--- Tambah Data Mahasiswa ---")
+                
+                try:
+                    nim = input("Masukkan NIM: ").strip()
+                    nim = validator.validasi_nim(nim)
+                    
+                    nama = input("Masukkan Nama: ")
+                    nama = validator.validasi_nama(nama)
+                    
+                    jurusan = input("Masukkan Jurusan: ")
+                    jurusan = validator.validasi_jurusan(jurusan)
+                    
+                    ipk_str = input("Masukkan IPK (0.00-4.00): ").strip()
+                    ipk = validator.validasi_ipk(ipk_str)
+                    
+                    # Buat objek mahasiswa dan tambahkan
+                    mahasiswa = Mahasiswa(nim, nama, jurusan, ipk)
+                    manager.tambah_mahasiswa(mahasiswa)
+                    
+                    print("\n✓ Data mahasiswa berhasil ditambahkan!")
+                    
+                except ValueError as e:
+                    print(f"\n✗ Error: {e}")
+            
+            elif pilihan == "2":
+                # Tampilkan semua data
+                print("\n--- Daftar Semua Mahasiswa ---")
+                view.tampilkan_tabel(manager.get_semua_mahasiswa())
+            
+            elif pilihan == "3":
+                # Cari mahasiswa
+                print("\n--- Cari Mahasiswa ---")
+                nim_cari = input("Masukkan NIM yang dicari: ").strip()
+                mahasiswa = manager.cari_mahasiswa(nim_cari)
+                view.tampilkan_detail_mahasiswa(mahasiswa)
+            
+            elif pilihan == "4":
+                # Keluar
+                print("\nTerima kasih telah menggunakan program ini!")
+                break
+            
+            else:
+                print("\n✗ Pilihan tidak valid! Silakan pilih 1-4.")
+        
+        except KeyboardInterrupt:
+            print("\n\nProgram dihentikan oleh user.")
+            break
+        except Exception as e:
+            print(f"\n✗ Terjadi kesalahan: {e}")
+
+
+# Jalankan program
+if _name_ == "_main_":
+    main()
