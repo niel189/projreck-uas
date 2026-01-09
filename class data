@@ -1,0 +1,33 @@
+# ==================== CLASS DATA ====================
+class Mahasiswa:
+    """Class untuk merepresentasikan data mahasiswa"""
+    
+    def _init_(self, nim, nama, jurusan, ipk):
+        self.__nim = nim
+        self.__nama = nama
+        self.__jurusan = jurusan
+        self.__ipk = ipk
+    
+    # Getter methods
+    def get_nim(self):
+        return self.__nim
+    
+    def get_nama(self):
+        return self.__nama
+    
+    def get_jurusan(self):
+        return self.__jurusan
+    
+    def get_ipk(self):
+        return self.__ipk
+    
+    def get_predikat(self):
+        """Menentukan predikat berdasarkan IPK"""
+        if self.__ipk >= 3.75:
+            return "Cumlaude"
+        elif self.__ipk >= 3.50:
+            return "Sangat Memuaskan"
+        elif self.__ipk >= 3.00:
+            return "Memuaskan"
+        else:
+            return "Cukup"
