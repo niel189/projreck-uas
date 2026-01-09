@@ -1,0 +1,61 @@
+# ==================== CLASS PROCESS ====================
+class MahasiswaManager:
+    """Class untuk mengelola data mahasiswa"""
+    
+    def __init__(self):
+        self.__daftar_mahasiswa = []
+    
+    def tambah_mahasiswa(self, mahasiswa):
+        """Menambahkan mahasiswa ke daftar"""
+        self.__daftar_mahasiswa.append(mahasiswa)
+    
+    def get_semua_mahasiswa(self):
+        """Mengambil semua data mahasiswa"""
+        return self.__daftar_mahasiswa
+    
+    def cari_mahasiswa(self, nim):
+        """Mencari mahasiswa berdasarkan NIM"""
+        for mhs in self.__daftar_mahasiswa:
+            if mhs.get_nim() == nim:
+                return mhs
+        return None
+
+
+class Validator:
+    """Class untuk validasi input"""
+    
+    @staticmethod
+    def validasi_nim(nim):
+        """Validasi NIM harus berupa angka"""
+        if not nim.isdigit():
+            raise ValueError("NIM harus berupa angka!")
+        if len(nim) < 5:
+            raise ValueError("NIM minimal 5 digit!")
+        return nim
+    
+    @staticmethod
+    def validasi_nama(nama):
+        """Validasi nama tidak boleh kosong"""
+        if not nama.strip():
+            raise ValueError("Nama tidak boleh kosong!")
+        return nama.strip()
+    
+    @staticmethod
+    def validasi_jurusan(jurusan):
+        """Validasi jurusan tidak boleh kosong"""
+        if not jurusan.strip():
+            raise ValueError("Jurusan tidak boleh kosong!")
+        return jurusan.strip()
+    
+    @staticmethod
+    def validasi_ipk(ipk_str):
+        """Validasi IPK harus berupa angka 0-4"""
+        try:
+            ipk = float(ipk_str)
+            if ipk < 0 or ipk > 4:
+                raise ValueError("IPK harus antara 0.00 - 4.00!")
+            return ipk
+        except ValueError:
+            raise ValueError("IPK harus berupa angka!")
+
+
