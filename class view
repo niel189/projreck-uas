@@ -1,0 +1,50 @@
+# ==================== CLASS VIEW ====================
+class ViewMahasiswa:
+    """Class untuk menampilkan data mahasiswa"""
+    
+    def tampilkan_header(self):
+        """Menampilkan header program"""
+        print("\n" + "="*70)
+        print("PROGRAM MANAJEMEN DATA MAHASISWA".center(70))
+        print("="*70)
+    
+    def tampilkan_menu(self):
+        """Menampilkan menu pilihan"""
+        print("\nMenu:")
+        print("1. Tambah Data Mahasiswa")
+        print("2. Tampilkan Semua Data")
+        print("3. Cari Mahasiswa (berdasarkan NIM)")
+        print("4. Keluar")
+        print("-" * 70)
+    
+    def tampilkan_tabel(self, daftar_mahasiswa):
+        """Menampilkan data mahasiswa dalam bentuk tabel"""
+        if not daftar_mahasiswa:
+            print("\nTidak ada data mahasiswa!")
+            return
+        
+        print("\n" + "="*100)
+        print(f"{'NIM':<15} {'Nama':<25} {'Jurusan':<20} {'IPK':<8} {'Predikat':<20}")
+        print("="*100)
+        
+        for mhs in daftar_mahasiswa:
+            print(f"{mhs.get_nim():<15} {mhs.get_nama():<25} {mhs.get_jurusan():<20} "
+                  f"{mhs.get_ipk():<8.2f} {mhs.get_predikat():<20}")
+        
+        print("="*100)
+    
+    def tampilkan_detail_mahasiswa(self, mahasiswa):
+        """Menampilkan detail satu mahasiswa"""
+        if mahasiswa is None:
+            print("\nData mahasiswa tidak ditemukan!")
+            return
+        
+        print("\n" + "-"*50)
+        print("DETAIL MAHASISWA")
+        print("-"*50)
+        print(f"NIM      : {mahasiswa.get_nim()}")
+        print(f"Nama     : {mahasiswa.get_nama()}")
+        print(f"Jurusan  : {mahasiswa.get_jurusan()}")
+        print(f"IPK      : {mahasiswa.get_ipk():.2f}")
+        print(f"Predikat : {mahasiswa.get_predikat()}")
+        print("-"*50)
